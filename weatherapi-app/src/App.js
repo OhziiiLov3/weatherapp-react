@@ -1,25 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react'
+import './App.css'
 
-function App() {
+const App = () => {
+
+  const apiKey = '233d7e0ca24b8004061ee0c5dab4fa94';
+  const [weatherData, setWeatherData] = useState([{}])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <input className="input" placeholder="Enter City.."/>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
