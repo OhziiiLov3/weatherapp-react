@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, {useState} from 'react'
 import './App.css'
 
 const App = () => {
@@ -9,11 +9,12 @@ const App = () => {
 
   const getWeather = (event) => {
     if(event.key === "Enter") {
-      fetch('https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&APPID=${apiKey}').then(
+      fetch('https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}').then(
         response => response.json()
       ).then(
         data => {
           setWeatherData(data)
+          setCity("")
         }
       )
     }
@@ -24,11 +25,26 @@ const App = () => {
       <input 
       className="input" 
       placeholder="Enter City.."
-      onChange={ e => setCity(e.target.value)}
-      value = {city}
-      onKeyPress = {getWeather}
-
+      onChange={e => setCity(e.target.value)}
+      value ={city}
+      onKeyPress ={getWeather}
       />
+
+
+      {typeof weatherData.main === 'undefined' ? (
+        <div>
+          <p>
+            Welcome to My Weather App! Enter a city to get the weather of.
+          </p>
+        </div>
+      ):(
+        <div>
+          <p>{weatherData.name}</p>
+          <p>{Math.round(weatherData.main.temp)}F</p>
+          <p>{weatherData.weather[0].main}</p>
+        </div>
+
+      )}
     </div>
   )
 }
