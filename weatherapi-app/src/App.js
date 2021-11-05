@@ -2,14 +2,14 @@ import React, {useState} from 'react'
 import './App.css'
 
 const App = () => {
-
+  
   const apiKey = '233d7e0ca24b8004061ee0c5dab4fa94'
   const [weatherData, setWeatherData] = useState([{}])
   const [city, setCity] = useState("")
 
   const getWeather = (event) => {
     if(event.key === "Enter") {
-      fetch('https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}').then(
+      fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&APPID=${apiKey}`).then(
         response => response.json()
       ).then(
         data => {
@@ -38,12 +38,19 @@ const App = () => {
           </p>
         </div>
       ):(
-        <div>
-          <p>{weatherData.name}</p>
-          <p>{Math.round(weatherData.main.temp)}F</p>
-          <p>{weatherData.weather[0].main}</p>
+        <div className="weather-data">
+          <p className='city'>{weatherData.name}</p>
+          <p className='temp'>{Math.round(weatherData.main.temp)}F</p>
+          <p className='weather'>{weatherData.weather[0].main}</p>
         </div>
 
+      )}
+
+      {weatherData.cod === "404" ? (
+        <p>City not found.</p>
+      ): (
+        <>
+        </>
       )}
     </div>
   )

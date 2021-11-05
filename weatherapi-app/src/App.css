@@ -20,3 +20,27 @@
 input:focus{
   outline: none;
 }
+
+.weather-date{
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.city{
+  font-size: 30px;
+  font-weight: 200;
+}
+
+.temp{
+  font-size: 90px;
+  padding: 10px;
+  border: 1px solid lightblue;
+  border-radius: 12px;
+}
+
+.weather{
+  font-size: 30px;
+  font-weight: 200;
+}
